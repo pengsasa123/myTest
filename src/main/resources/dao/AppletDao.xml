@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingzu.applet.dao.AppletDao">
+
+
+    <resultMap id="optsInstallMaster_Login_Map" type="java.util.HashMap">
+        <result column="OpInstallMasterID" property="opInstallMasterID" jdbcType="BIGINT"/>
+        <result column="OpInstallMasterName" property="opInstallMasterName" jdbcType="VARCHAR"/>
+        <result column="OpInstallMasterActionPhone" property="opInstallMasterActionPhone" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="optsInstallMaster_Login" statementType="CALLABLE" resultMap="optsInstallMaster_Login_Map">
+        {
+          call OptsInstallMaster_Login(
+            #{account,jdbcType=VARCHAR,mode=IN},
+            #{password,jdbcType=VARCHAR,mode=IN}
+          )
+        }
+    </select>
+
+    <resultMap id="optsInstallMaster_UnInstallIHardware_Map" type="java.util.HashMap">
+        <result column="baIHardwareCategoryID" property="baIHardwareCategoryID" jdbcType="BIGINT"/>
+        <result column="baIHardwareCategoryName" property="baIHardwareCategoryName" jdbcType="VARCHAR"/>
+        <result column="iCount" property="iCount" jdbcType="BIGINT"/>
+    </resultMap>
+    <select id="optsInstallMaster_UnInstallIHardware" statementType="CALLABLE" resultMap="optsInstallMaster_UnInstallIHardware_Map">
+        {
+          call OptsInstallMaster_UnInstallIHardware(
+            #{opInstallMasterID,jdbcType=BIGINT,mode=IN}
+          )
+        }
+    </select>
+
+    <select id="optsInstallMaster_CheckDeviceNumber" statementType="CALLABLE" resultType="java.util.HashMap">
+        {
+          call OptsInstallMaster_CheckDeviceNumber(
+            #{deviceNumber,jdbcType=VARCHAR,mode=IN}
+          )
+        }
+    </select>
+
+    <select id="optsInstallMaster_MaHouse" statementType="CALLABLE" resultType="java.util.HashMap">
+        {
+          call OptsInstallMaster_MaHouse(
+            #{opInstallMasterID,jdbcType=BIGINT,mode=IN},
+            #{baIHardwareCategoryID,jdbcType=BIGINT,mode=IN}
+          )
+        }
+    </select>
+
+    <update id="optsInstallMaster_InstallProcess" statementType="CALLABLE">
+        {
+          CALL OptsInstallMaster_InstallProcess(
+            #{opInstallMasterID,jdbcType=BIGINT,mode=IN},
+            #{opHouseIHardwareID,jdbcType=BIGINT,mode=IN},
+            #{maHouseID,jdbcType=BIGINT,mode=IN},
+            #{baIHardwareCategoryID,jdbcType=BIGINT,mode=IN},
+            #{deviceNumber,jdbcType=VARCHAR,mode=IN}
+          )
+        }
+    </update>
+</mapper>
