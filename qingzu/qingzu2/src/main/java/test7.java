@@ -79,7 +79,9 @@ public class test7 {
             x -> x,
             Collector.Characteristics.IDENTITY_FINISH
         );
-        list.stream().collect(collector)
+        list.stream()
+            .map(Student::getAge)
+            .collect(collector)
             .forEach(System.out::println);
     }
 }
