@@ -61,7 +61,7 @@ public class test7 {
                 T表示元素 A表示执行中的结果
                 这个表示T会在容器A中发生操作
              */
-            (m, n) -> m.add(n),
+            (x, y) -> x.add(y),
             /*
                 BinaryOperator<A> combiner 接收2个参数并返回同类型的结果
                 A表示执行中的结果
