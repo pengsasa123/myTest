@@ -58,4 +58,27 @@
           )
         }
     </update>
+
+    <select id="getqwe" resultType="java.util.HashMap">
+        SELECT id,city_id,city_name,lat,lng,province_id,pinyin FROM city
+    </select>
+
+    <update id="update">
+        UPDATE city set pinyin = #{pinyin} WHERE city_name = #{cityName}
+    </update>
+
+    <select id="getId" resultType="java.lang.String">
+        SELECT area_id FROM area
+    </select>
+
+    <parameterMap id="Map_i" type="java.util.HashMap">
+        <parameter property="id"/>
+        <parameter property="streetId"/>
+        <parameter property="lat"/>
+        <parameter property="lng"/>
+        <parameter property="areaId"/>
+    </parameterMap>
+    <insert id="insert" parameterMap="Map_i">
+        INSERT INTO street(street_id,lat,lng,area_id,street_name) VALUES (#{streetId},#{lat},#{lng},#{areaId},#{streetName})
+    </insert>
 </mapper>

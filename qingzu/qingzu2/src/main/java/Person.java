@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
+public interface Person<T> {
 
-public interface Person {
+
+    T eat();
 }

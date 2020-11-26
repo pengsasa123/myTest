@@ -7,7 +7,6 @@ private fun updateLastDate(){
     val i = LocalDate.now().minusDays(1)
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     val string = i.format(formatter)
-    println()
 }
 
 fun main(){

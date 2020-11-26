@@ -1,4 +1,5 @@
 package com.qingzu.applet.test;
 
-public class QuackBehavior {
+public interface QuackBehavior {
+    public void quack();
 }

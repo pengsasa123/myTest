@@ -1,5 +1,8 @@
 package com.qingzu.applet.interfaces;
 
+import com.qingzu.applet.result.City;
+
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +39,11 @@ public interface AppletService {
      */
     List<Map<String,Object>> optsInstallMaster_MaHouse(Long opInstallMasterID,Long baIHardwareCategoryID);
 
+    List<Map<String,String>> getqwe();
+    int update(String pinyin,String cityName);
+    List<String> getId();
 
+    int insert(String streetId, BigDecimal lat,BigDecimal lng,String areaId,String streetName);
     /**
      * 确认安装完毕按钮
      * @param opInstallMasterID : 安装师傅id
@@ -46,4 +53,7 @@ public interface AppletService {
      * @param deviceNumber : 智能硬件序列号
      */
     void optsInstallMaster_InstallProcess(Long opInstallMasterID,Long opHouseIHardwareID,Long maHouseID,Long baIHardwareCategoryID,String deviceNumber);
+
+
+    void test();
 }

@@ -1,16 +1,12 @@
-package com.qingzu.common.base.util;
+package com.qingzu.applet.test;
 
 
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.*;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import lombok.extern.slf4j.Slf4j;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by zhuocongbin
@@ -47,6 +43,16 @@ public final class HttpSendCenter {
                             .header("token", apiKey)
                             .post(requestBody)
                             .build();
+        return handleRequest(request);
+    }
+
+    public static JSONObject post( String url, JSONObject body) {
+        RequestBody requestBody = RequestBody.create(JSON, body.toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .header("Content-Type", "application/json")
+                .post(requestBody)
+                .build();
         return handleRequest(request);
     }
     public static JSONObject postNotBody(String apiKey, String url) {

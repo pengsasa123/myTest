@@ -1,4 +1,5 @@
 package com.qingzu.applet.test;
 
-public class DTOConvert {
+public interface DTOConvert<S,T> {
+    T convert(S s);
 }
