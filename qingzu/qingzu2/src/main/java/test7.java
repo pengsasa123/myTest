@@ -1,24 +1,12 @@
 import java.util.*;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class test7 {
     public static void main(String[] args) {
-        Function<Integer, Integer> f = i -> i + 1;
-        System.out.println(f.apply(3));
 
         Student student = new Student();
         student.setAge(1);
-
-        Optional.of(student)
-            .flatMap(u -> Optional.of(u.getAge()));
-
-
-        Comparator comparator = Comparator.comparingDouble(Double::doubleValue);
-        BinaryOperator by = BinaryOperator.minBy(comparator);
-        System.out.println(by.apply(1.1, 2.2));
 
         Student s = new Student();
         s.setAge(1);
@@ -83,5 +71,13 @@ public class test7 {
             .map(Student::getAge)
             .collect(collector)
             .forEach(System.out::println);
+
+        // 聚合函数查询
+        IntSummaryStatistics statistics = list.stream().collect(Collectors.summarizingInt(Student::getAge));
+        int max = statistics.getMax();
+        int min = statistics.getMin();
+        double average = statistics.getAverage();
+        long sum = statistics.getSum();
+        System.out.printf("最大值->%d,最小值->%d,平均值->%.2f,合计->%d", max, min, average, sum);
     }
 }
