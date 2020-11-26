@@ -1,6 +1,7 @@
 import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class test7 {
@@ -45,5 +46,40 @@ public class test7 {
             .groupingBy(Student::getAge, Collectors.counting()));
         System.out.println(collect1);
 
+        /**
+         * 手动实现一个toList
+         * @param Object 表示元素
+         * @param ArrayList<Object> 第一个表示执行中的结果 第二个表示最终的结果
+         */
+        Collector<Object, ArrayList<Object>, ArrayList<Object>> collector = Collector.of(
+            /*Supplier<A> supplier 无参数返回一个结果
+                相当于返回了一个执行中的结果A
+            */
+            () -> new ArrayList<>(),
+            /*
+                BiConsumer<A, T> accumulator 接收2个参数不返回结果
+                T表示元素 A表示执行中的结果
+                这个表示T会在容器A中发生操作
+             */
+            (m, n) -> m.add(n),
+            /*
+                BinaryOperator<A> combiner 接收2个参数并返回同类型的结果
+                A表示执行中的结果
+                这个表示合并结果,将其合成执行中的结果A
+             */
+            (x, y) -> {
+                x.addAll(y);
+                return x;
+            },
+            /*
+                Function<A, R> finisher 接收一个参数并返回一个结果
+                R表示最终结果 A表示执行中的结果
+                这个表示把结果A转为最终结果R
+             */
+            x -> x,
+            Collector.Characteristics.IDENTITY_FINISH
+        );
+        list.stream().collect(collector)
+            .forEach(System.out::println);
     }
 }
