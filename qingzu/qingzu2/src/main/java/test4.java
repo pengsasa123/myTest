@@ -13,6 +13,7 @@ public class test4 {
 
     public static void main(String[] args) {
         List<Integer> numList = Arrays.asList(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+        // 不在并行流的情况下,当初始值与list的类型不一致时,第三个参数是决定a的类型
         ArrayList<String> list = numList.stream().reduce(new ArrayList<String>(), (a, b) -> {
             a.add("--->" + b);
             return a;
