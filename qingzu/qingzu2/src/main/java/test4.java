@@ -26,6 +26,13 @@ public class test4 {
         List<Integer> list1 = new ArrayList<>();
         Integer reduce1 = list1.stream().reduce(0, (a, b) -> a + b);
         System.out.println(reduce1);
+
+        // 当初始值与list的类型不一致时,第三个参数来指定返回值
+        List<Integer> integers2 = Arrays.asList(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+        // 如果不指定第三个参数的话,前面会报错,初始值a的类型就是integer,反而指定了返回值类型,a的类型就是返回值stringbuilder
+        StringBuilder reduce2 = integers2.stream().reduce(new StringBuilder(), (a, b) -> a.append(b), StringBuilder::append);
+        System.out.println(reduce2);
+
     }
 
 
