@@ -11,6 +11,10 @@ public class test10 {
      * poll:若队列为空，返回null。
      * remove:若队列为空，抛出NoSuchElementException异常。
      * take:若队列为空，发生阻塞，等待有元素。
+     *
+     * 检查但不删除队列的头
+     * element:会跑出异常
+     * peek:返回null
      */
 
     public static void main(String[] args) throws InterruptedException {
