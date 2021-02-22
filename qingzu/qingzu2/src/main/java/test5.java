@@ -21,5 +21,11 @@ public class test5 {
         String s = Convert.digitToChinese(1234.56);
         System.out.println(s);
 
+        StringJoiner sjr = new StringJoiner(",");
+        String[] strings = {"peng","sa","sa"};
+        for (String string : strings) {
+            sjr.add(string);
+        }
+        System.out.println(sjr.toString());
     }
 }
